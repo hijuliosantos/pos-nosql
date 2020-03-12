@@ -439,8 +439,8 @@ Type "it" for more
 { "Sector" : "Financial", "Company" : "Cascade Bancorp", "Profit" : 0.994 }
 { "Sector" : "Basic Materials", "Company" : "Pacific Coast Oil Trust", "Profit" : 0.99 }
 
-9. Liste as ações agrupadas por setor</br>
-> db.stocks.aggregate([{"$group": {_id:"$Sector"}}])
+9. Liste as ações agrupadas por setor
+> db.stocks.aggregate([{"$group": {_id:"$Sector"}}])</br>
 { "_id" : "Healthcare" }
 { "_id" : "Services" }
 { "_id" : "Basic Materials" }
@@ -451,13 +451,22 @@ Type "it" for more
 { "_id" : "Industrial Goods" }
 { "_id" : "Conglomerates" }
 
-db.stocks.aggregate([{"$group": {_id:"$Sector", companies: {"$addToSet": {Company:"$Company"}}}},{"$project": {"_id":1,"companies":1}}])
+> db.stocks.aggregate([{"$group": {_id:"$Sector", companies: {"$addToSet": {Company:"$Company"}}}},{"$project": {"_id":1,"companies":1}}])</br>
+Irá apresentar o nome das companias agrupados pelo setor.
 
 Exercício 3 – Fraude na Enron!
 
 1. Liste as pessoas que enviaram e-mails (de forma distinta, ou seja, sem repetir). Quantas pessoas são?
 
+> db.enron.distinct('sender').length</br>
+2200
+
 2. Contabilize quantos e-mails tem a palavra “fraud”
+
+> db.enron.find({"text": /fraud/}).count()</br>
+23
+
+     
 
 
 
