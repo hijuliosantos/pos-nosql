@@ -1,4 +1,4 @@
-# Exercício 1 - Aquecendo com os pets
+﻿# Exercício 1 - Aquecendo com os pets
 
 1.Adicione outro Peixe e um Hamster com nome Frodo
 
@@ -60,9 +60,9 @@ WriteResult({ "nInserted" : 1 })
 
 4. Identifique quantas pessoas tem gatos, quantas tem cachorro e quantas não tem nenhum dos dois
 
-> db.italians.find({"cat": null}).count()</br>
+> db.italians.find({cat: {$exists: true}}).count()</br>
 4045</br>
-> db.italians.find({"dog": null}).count()</br>
+> db.italians.find({dog: {$exists: true}}).count()</br>
 5893</br>
 > db.italians.find({$and: [{dog: null}, {cat: null}]}).count()</br>
 2426
